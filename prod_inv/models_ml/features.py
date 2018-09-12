@@ -109,15 +109,14 @@ def features_extractor(date_reference, date_base, coin, period, long_period=8640
                     'mean_return', 'variance', 'stdev',
                     ]
 
-    # indicators = [
-    #     'ADX', 'ATR',
-    #     'HISTOGRAM', 'MACD', 'MOMENTUM', 'RSI14', 'SIGNAL',
-    #     'BBand_lower_height', 'BBand_upper_height',
-    #     'slope_short',
-    #     'EMA_height12', 'EMA_height26', 'SMA_height12', 'SMA_height26'
-    # ]
+    indicators = [
+        'ADX', 'ATR',
+        'HISTOGRAM', 'MACD', 'MOMENTUM', 'RSI14', 'SIGNAL',
+        'BBand_lower_height', 'BBand_upper_height',
+        'slope_short',
+        'EMA_height12', 'EMA_height26', 'SMA_height12', 'SMA_height26'
+    ]
 
-    indicators = []
-    clean_df = get_lagged_values(2, filter_df, indicators).drop(drop_columns, axis=1).dropna()
+    clean_df = get_lagged_values(1, filter_df, indicators).drop(drop_columns, axis=1).dropna()
 
     return clean_df

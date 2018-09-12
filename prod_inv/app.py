@@ -126,15 +126,17 @@ def make_prediction():
         features_df = features_extractor(d.date, d_base, c, int(period))
         # remove close when predicting
         if features_df['slope_short'].iloc[-1] > 0:
-            signal, precision, target = predict_signal(features_df.drop(['close'], axis=1).iloc[-1], c)
-            signals.append({
-                'coin': c,
-                'signal': signal,
-                'precision': precision,
-                'target': target,
-                'date_reference': d.date
-            })
-            set_signal(d.date, c, d.close, d.close * (1 + target * signal * precision))
+            signal, precision, target = predict_signal(features_df.drop(['close'], axis=1).iloc[-1], c, 'bull')
+        else:
+            signal, precision, target = predict_signal(features_df.drop(['close'], axis=1).iloc[-1], c, 'bull')
+        signals.append({
+            'coin': c,
+            'signal': signal,
+            'precision': precision,
+            'target': target,
+            'date_reference': d.date
+        })
+        set_signal(d.date, c, d.close, d.close * (1 + target * signal * precision))
     # Calculate Risk of buyings
     # Define best Weights
     # Send Signals

@@ -1,8 +1,8 @@
 import pickle
 
 
-def predict_signal(X, coin, threshold=0.8):
-    filename = coin + '_model.sav'
+def predict_signal(X, coin, market, threshold=0.8):
+    filename = market + '_' + coin + '_model.sav'
     precisions = pickle.load(open(filename, 'rb'))
     X = precisions['Scaler'].transform(X.ravel().reshape(1,-1))
 
