@@ -1,5 +1,5 @@
 https://realpython.com/flask-by-example-part-2-postgres-sqlalchemy-and-alembic/
-
+export DATABASE_URL="postgresql://postgres:@localhost:5432/market"
 export APP_SETTINGS="config.DevelopmentConfig"
 
 export DATABASE_URL="postgresql://localhost/market"
