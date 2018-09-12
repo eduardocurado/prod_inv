@@ -28,6 +28,7 @@ from prod_inv.models_ml.select_model import train_model
 def get_historical_ticker():
     period = int(request.args.get('period')) or 7200
     historical = int(request.args.get('historical')) or 30
+    import ipdb;ipdb.set_trace()
     response_po = get_historical_ticker_prices(period, all_tickers, historical)
     if response_po == 'Success':
         return 'Insertion successfull'
@@ -37,7 +38,6 @@ def get_historical_ticker():
 @app.route('/get_historical_google_trends', methods=['GET'])
 def get_historical_trends():
     historical = int(request.args.get('historical')) or 30
-    period = int(request.args.get('period')) or 14400
     end_date = datetime.now()  # up until today
     start_date = (end_date - timedelta(days=historical))
     response_go = get_trends(start_date.timestamp(), end_date.timestamp())
@@ -80,7 +80,6 @@ def get_ticker():
     return 'Failed'
 
 
-
 @app.route('/get_tas', methods=['GET'])
 def get_technical_indicators():
     period = int(request.args.get('period')) or 14400
@@ -90,7 +89,6 @@ def get_technical_indicators():
         calculate_indicators(d, period, c)
 
     return 'Success'
-
 
 
 @app.route('/train_models', methods=['GET'])
