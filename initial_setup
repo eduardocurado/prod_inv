@@ -1,0 +1,9 @@
+https://realpython.com/flask-by-example-part-2-postgres-sqlalchemy-and-alembic/
+
+export APP_SETTINGS="config.DevelopmentConfig"
+
+export DATABASE_URL="postgresql://localhost/market"
+
+. venv/bin/activate
+
+python manage.py runserver
