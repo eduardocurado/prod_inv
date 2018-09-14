@@ -20,6 +20,8 @@ def get_trends(base_date, end_date):
     i = 0
 
     while i <= len(all_tickers) + 1:
+        import ipdb;
+        ipdb.set_trace()
         trends = pytrends.get_historical_interest(kw_list[i:i + 5], year_start=int(date_window[:4]),
                                                   month_start=int(date_window[5:7]),
                                                   day_start=int(date_window[8:10]),
@@ -29,9 +31,8 @@ def get_trends(base_date, end_date):
                                                   day_end=int(date_end[8:10]),
                                                   hour_end=int(date_end[11:13]),
                                                   cat=0, geo='', gprop='', sleep=60)
-        import ipdb;
-        ipdb.set_trace()
-        trends = trends.drop(['isPartial'], axis=1).reset_index().copy()
+
+        trends = trends.drop(['isPartial'], axis=1).reset_index().drop_duplicates().copy()
         columns_trends = trends.columns
         for index, row in trends.iterrows():
             for col in columns_trends:
