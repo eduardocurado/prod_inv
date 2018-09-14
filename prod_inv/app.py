@@ -63,6 +63,7 @@ def get_historical_indicators():
 @app.route('/get_google_trend', methods=['GET'])
 def get_google_trend():
     period = int(request.args.get('period')) or 14400
+    historical = int(request.args.get('historical')) or 30
     end_date = datetime.now()  # up until today
     start_date = (end_date - timedelta(seconds=period))
     response_go = get_trends(start_date.timestamp(), end_date.timestamp())
@@ -140,8 +141,6 @@ def make_prediction():
     # Send Signals
 
     return 'Success'
-
-
 
 
 if __name__ == '__main__':
