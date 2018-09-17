@@ -28,7 +28,6 @@ from prod_inv.models_ml.select_model import train_model
 def get_historical_ticker():
     period = int(request.args.get('period')) or 7200
     historical = int(request.args.get('historical')) or 30
-    import ipdb;ipdb.set_trace()
     response_po = get_historical_ticker_prices(period, all_tickers, historical)
     if response_po == 'Success':
         return 'Insertion successfull'
