@@ -18,7 +18,8 @@ def get_trends(base_date, end_date):
     i = 0
 
     while i <= len(all_tickers) + 1:
-        trends = pytrends.get_historical_interest(kw_list[i:i + 5], year_start=int(date_window[:4]),
+        import ipdb;ipdb.set_trace()
+        trends = pytrends.get_historical_interest(kw_list[i:i + 3], year_start=int(date_window[:4]),
                                                   month_start=int(date_window[5:7]),
                                                   day_start=int(date_window[8:10]),
                                                   hour_start=int(date_window[11:13]),
@@ -46,6 +47,6 @@ def get_trends(base_date, end_date):
                     ipdb.set_trace()
                     print('Already has value ' + col + ' ' + str(row['date']))
 
-        i += 5
+        i += 3
 
     return 'Success'

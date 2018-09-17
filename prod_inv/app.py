@@ -63,7 +63,6 @@ def get_historical_indicators():
 @app.route('/get_google_trend', methods=['GET'])
 def get_google_trend():
     period = int(request.args.get('period')) or 14400
-    historical = int(request.args.get('historical')) or 30
     end_date = datetime.now()  # up until today
     start_date = (end_date - timedelta(seconds=period))
     response_go = get_trends(start_date.timestamp(), end_date.timestamp())
@@ -124,10 +123,7 @@ def make_prediction():
         d_base = d.date - int(training_period) * 86400
         features_df = features_extractor(d.date, d_base, c, int(period))
         # remove close when predicting
-        if features_df['slope_short'].iloc[-1] > 0:
-            signal, precision, target = predict_signal(features_df.drop(['close'], axis=1).iloc[-1], c, 'bull')
-        else:
-            signal, precision, target = predict_signal(features_df.drop(['close'], axis=1).iloc[-1], c, 'bull')
+        signal, precision, target = predict_signal(features_df.drop(['close'], axis=1).iloc[-1], c)
         signals.append({
             'coin': c,
             'signal': signal,
