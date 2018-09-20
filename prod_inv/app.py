@@ -124,7 +124,6 @@ def make_prediction():
         features_df = features_extractor(d.date, d_base, c, int(period))
         # remove close when predicting
         signal, precision, target, stop_loss, expected_value = predict_signal(features_df.drop(['close'], axis=1).iloc[-1], c)
-        import ipdb;ipdb.set_trace()
         if signal == 1:
             signals.append({
                 'coin': c,
@@ -144,6 +143,8 @@ def make_prediction():
                    top_signal['value'], top_signal['expected_value'],
                    top_signal['stop_loss'], top_signal['target_profit'],
                    'open')
+    else:
+        print('No signal sent!')
 
     return 'Success'
 

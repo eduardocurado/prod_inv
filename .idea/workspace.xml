@@ -2,25 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6c97972f-daea-4702-83fd-d106ff0a5cc5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/USDT_BTC_model.sav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/USDT_DASH_model.sav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/USDT_EOS_model.sav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/USDT_ETC_model.sav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/USDT_ETH_model.sav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/USDT_LTC_model.sav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/USDT_STR_model.sav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/USDT_XMR_model.sav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/USDT_XRP_model.sav" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Random Forest_USDT_BTC_model.sav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/migrations/versions/7d28290be954_.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_BTC_model.sav" afterPath="$PROJECT_DIR$/USDT_BTC_model.sav" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_DASH_model.sav" afterPath="$PROJECT_DIR$/USDT_DASH_model.sav" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_ETC_model.sav" afterPath="$PROJECT_DIR$/USDT_ETC_model.sav" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_ETH_model.sav" afterPath="$PROJECT_DIR$/USDT_ETH_model.sav" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_LTC_model.sav" afterPath="$PROJECT_DIR$/USDT_LTC_model.sav" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_STR_model.sav" afterPath="$PROJECT_DIR$/USDT_STR_model.sav" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_XMR_model.sav" afterPath="$PROJECT_DIR$/USDT_XMR_model.sav" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_XRP_model.sav" afterPath="$PROJECT_DIR$/USDT_XRP_model.sav" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/notebooks/Model_selection.ipynb" afterPath="$PROJECT_DIR$/notebooks/Model_selection.ipynb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prod_inv/app.py" afterPath="$PROJECT_DIR$/prod_inv/app.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prod_inv/book_valuation/book_runner.py" afterPath="$PROJECT_DIR$/prod_inv/book_valuation/book_runner.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prod_inv/models/book.py" afterPath="$PROJECT_DIR$/prod_inv/models/book.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prod_inv/models_ml/prediction.py" afterPath="$PROJECT_DIR$/prod_inv/models_ml/prediction.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prod_inv/models_ml/select_model.py" afterPath="$PROJECT_DIR$/prod_inv/models_ml/select_model.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prod_inv/models_ml/utils.py" afterPath="$PROJECT_DIR$/prod_inv/models_ml/utils.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,8 +25,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/prod_inv/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="126" column="35" lean-forward="false" selection-start-line="126" selection-start-column="35" selection-end-line="126" selection-end-column="35" />
+            <state relative-caret-position="308">
+              <caret line="146" column="30" lean-forward="false" selection-start-line="146" selection-start-column="30" selection-end-line="146" selection-end-column="30" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -43,85 +34,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ticker.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/prod_inv/models/ticker.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="14" column="9" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="book_runner.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/prod_inv/book_valuation/book_runner.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="book.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/prod_inv/models/book.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="21" column="97" lean-forward="true" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="97" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/prod_inv/models_ml/utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="prediction.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/prod_inv/models_ml/prediction.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="23" column="70" lean-forward="true" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="70" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="select_model.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/prod_inv/models_ml/select_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="264" column="17" lean-forward="true" selection-start-line="256" selection-start-column="32" selection-end-line="264" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ml_model.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/prod_inv/models/ml_model.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
+            <state relative-caret-position="-1620">
+              <caret line="135" column="4" lean-forward="false" selection-start-line="135" selection-start-column="4" selection-end-line="135" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="initial_setup" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/initial_setup">
+      <file leaf-file-name="one_day.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bin/one_day.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="26" />
+            <state relative-caret-position="135">
+              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="set_up_initial_data.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bin/set_up_initial_data.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="78" lean-forward="false" selection-start-line="4" selection-start-column="75" selection-end-line="4" selection-end-column="78" />
               <folding />
             </state>
           </provider>
@@ -149,6 +86,7 @@
       <find>loggin</find>
       <find>import</find>
       <find>precision</find>
+      <find>import ipdb</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -204,7 +142,6 @@
         <option value="$PROJECT_DIR$/bin/run_models.sh" />
         <option value="$PROJECT_DIR$/bin/one_day.sh" />
         <option value="$PROJECT_DIR$/initial_setup" />
-        <option value="$PROJECT_DIR$/bin/set_up_initial_data.sh" />
         <option value="$PROJECT_DIR$/prod_inv/collectors/google_trends.py" />
         <option value="$PROJECT_DIR$/prod_inv/models_ml/features.py" />
         <option value="$PROJECT_DIR$/prod_inv/models_ml/select_model.py" />
@@ -212,6 +149,7 @@
         <option value="$PROJECT_DIR$/prod_inv/models_ml/prediction.py" />
         <option value="$PROJECT_DIR$/prod_inv/models/book.py" />
         <option value="$PROJECT_DIR$/prod_inv/book_valuation/book_runner.py" />
+        <option value="$PROJECT_DIR$/bin/set_up_initial_data.sh" />
         <option value="$PROJECT_DIR$/prod_inv/app.py" />
       </list>
     </option>
@@ -242,22 +180,6 @@
           <expand>
             <path>
               <item name="prod_inv" type="b2602c69:ProjectViewProjectNode" />
-              <item name="prod_inv" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="prod_inv" type="b2602c69:ProjectViewProjectNode" />
-              <item name="prod_inv" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="prod_inv" type="b2602c69:ProjectViewProjectNode" />
-              <item name="prod_inv" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
-              <item name="versions" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="prod_inv" type="b2602c69:ProjectViewProjectNode" />
-              <item name="prod_inv" type="462c0819:PsiDirectoryNode" />
               <item name="prod_inv" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -533,13 +455,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/one_day.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/four_hour.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -554,13 +469,6 @@
           <folding>
             <element signature="e#0#11#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/set_up_initial_data.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="74" lean-forward="true" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="74" />
         </state>
       </provider>
     </entry>
@@ -580,13 +488,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/run_models.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="68" lean-forward="true" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/notebooks/Model_selection.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
@@ -599,16 +500,8 @@
         <state relative-caret-position="-582">
           <caret line="21" column="4" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/initial_setup">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -633,16 +526,6 @@
         <state relative-caret-position="-110">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/prod_inv/models_ml/select_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="264" column="17" lean-forward="true" selection-start-line="256" selection-start-column="32" selection-end-line="264" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -683,7 +566,7 @@
         <state relative-caret-position="75">
           <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#0#37#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -696,10 +579,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/initial_setup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/run_models.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="68" lean-forward="true" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/one_day.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/set_up_initial_data.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="78" lean-forward="false" selection-start-line="4" selection-start-column="75" selection-end-line="4" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prod_inv/models_ml/select_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1620">
+          <caret line="135" column="4" lean-forward="false" selection-start-line="135" selection-start-column="4" selection-end-line="135" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/prod_inv/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="126" column="35" lean-forward="false" selection-start-line="126" selection-start-column="35" selection-end-line="126" selection-end-column="35" />
+        <state relative-caret-position="308">
+          <caret line="146" column="30" lean-forward="false" selection-start-line="146" selection-start-column="30" selection-end-line="146" selection-end-column="30" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
