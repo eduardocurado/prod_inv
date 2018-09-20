@@ -28,7 +28,7 @@ def get_trends(base_date, end_date):
                                                   hour_end=int(date_end[11:13]),
                                                   cat=0, geo='', gprop='', sleep=60)
 
-        if trends.empyt:
+        if trends.empty:
             return 'Failed'
 
         trends = trends.drop(['isPartial'], axis=1).reset_index().drop_duplicates(subset=['date'],
