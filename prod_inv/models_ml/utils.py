@@ -26,26 +26,3 @@ def get_slope(win, closes):
             'slope': slope
         })
     return di
-
-
-def get_multiple(Psl, P, TP, flat_list):
-    SL = np.percentile(flat_list, Psl*100)
-    mean_return = np.percentile(flat_list, 50)
-    if SL < 0:
-        ER = Psl * SL + (1-Psl) * P * TP #+ (1-Psl)*(1-P)*mean_return
-        risk_free = ((1 + 0.065) ** (1/252) - 1)
-        print(risk_free)
-        print(ER)
-        print(SL)
-        print('----------')
-        multiple = ER/risk_free
-        return multiple
-
-def get_expected_values(precision, target_value, flat_list):
-    psls = [0.05, 0.06, 0.07, 0.08, 0.09, 0.10, 0.11, 0.12, 0.15]
-    simulations = []
-    for ps in psls:
-        simulations.append(get_multiple(ps, precision, target_value, flat_list))
-
-    return simulations
-

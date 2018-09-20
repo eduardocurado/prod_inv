@@ -120,20 +120,30 @@ def make_prediction():
         dates = db.session.query(Ticker).filter(and_(Ticker.coin == c, Ticker.period == int(period))).order_by(Ticker.date.desc()).limit(1).all()
         d = dates[-1]
         d_base = d.date - int(training_period) * 86400
+        value = d.close
         features_df = features_extractor(d.date, d_base, c, int(period))
         # remove close when predicting
-        signal, precision, target = predict_signal(features_df.drop(['close'], axis=1).iloc[-1], c)
-        signals.append({
-            'coin': c,
-            'signal': signal,
-            'precision': precision,
-            'target': target,
-            'date_reference': d.date
-        })
-        set_signal(d.date, c, d.close, d.close * (1 + target * signal * precision))
-    # Calculate Risk of buyings
-    # Define best Weights
-    # Send Signals
+        signal, precision, target, stop_loss, expected_value = predict_signal(features_df.drop(['close'], axis=1).iloc[-1], c)
+        import ipdb;ipdb.set_trace()
+        if signal == 1:
+            signals.append({
+                'coin': c,
+                'signal': signal,
+                'precision': precision,
+                'target_profit': target,
+                'date_reference': d.date,
+                'stop_loss': stop_loss,
+                'expected_value': expected_value,
+                'value': value
+            })
+
+    signals = sorted(signals, key=lambda x:x['expected_value'], reverse=True)
+    if signals:
+        top_signal = signals[0]
+        set_signal(top_signal['date_reference'], top_signal['coin'],
+                   top_signal['value'], top_signal['expected_value'],
+                   top_signal['stop_loss'], top_signal['target_profit'],
+                   'open')
 
     return 'Success'
 
