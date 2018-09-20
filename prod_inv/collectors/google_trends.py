@@ -28,8 +28,12 @@ def get_trends(base_date, end_date):
                                                   hour_end=int(date_end[11:13]),
                                                   cat=0, geo='', gprop='', sleep=60)
 
+        if trends.empyt:
+            return 'Failed'
+
         trends = trends.drop(['isPartial'], axis=1).reset_index().drop_duplicates(subset=['date'],
                                                                                   keep="last").copy()
+
         columns_trends = trends.columns
         for index, row in trends.iterrows():
             for col in columns_trends:
