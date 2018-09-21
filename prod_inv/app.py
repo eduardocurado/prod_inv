@@ -123,7 +123,7 @@ def make_prediction():
         value = d.close
         features_df = features_extractor(d.date, d_base, c, int(period))
         # remove close when predicting
-        signal, precision, target, stop_loss, expected_value = predict_signal(features_df.drop(['close'], axis=1).iloc[-1], c)
+        signal, precision, target, stop_loss, expected_value = predict_signal(features_df.drop(['close'], axis=1).iloc[-1], c, 0.7)
         if signal == 1:
             signals.append({
                 'coin': c,

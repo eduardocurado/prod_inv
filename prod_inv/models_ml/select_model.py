@@ -18,7 +18,7 @@ from prod_inv.models.ml_model import MLModel
 
 target_values = [0, 0.005, 0.01, 0.015, 0.02, 0.025, 0.03]
 
-threshold = 0.80
+threshold = 0.70
 
 
 models = {
