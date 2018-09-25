@@ -117,7 +117,7 @@ def set_up_initial_data(coin):
 
     return full_df
 
-coin = 'USDT_BTC'
+coin = 'USDT_ETH'
 
 df = set_up_initial_data(coin)
 features_df = df.dropna().copy()
