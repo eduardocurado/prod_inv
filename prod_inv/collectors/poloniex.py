@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 import requests
 
 from prod_inv.app import db
-from prod_inv.collectors.google_trends import get_trends
 from prod_inv.fixtures import all_tickers
 from prod_inv.models.ticker import Ticker
 
@@ -53,7 +52,6 @@ def get_historical_ticker_prices(period, tickers, historical):
     polo_url = base_polo_url + 'returnChartData&currencyPair={}&start={}&end={}&period={}'
     end_date = datetime.now()  # up until today
     start_date = (end_date - timedelta(days=historical))
-    get_trends(start_date.timestamp(), end_date.timestamp())
     if not tickers:
         tickers = all_tickers
 

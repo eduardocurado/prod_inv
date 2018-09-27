@@ -1,6 +1,7 @@
 venv
 *.pyc
 .DS_Store
-.idea
+*idea
 *.iml
 *.xml
+migrations
