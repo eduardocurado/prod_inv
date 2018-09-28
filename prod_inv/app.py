@@ -18,7 +18,7 @@ from prod_inv.collectors.poloniex import get_current_ticker_prices, get_historic
 from prod_inv.technical_indicators.calculate_indicators import calculate_indicators
 from prod_inv.models.ticker import Ticker
 from prod_inv.models_ml.features import features_extractor
-from prod_inv.models_ml.prediction import predict_signal
+from prod_inv.models_ml.prediction import predict_signal, check_open_orders
 from prod_inv.book_valuation.book_runner import set_signal
 from prod_inv.collectors.google_trends import get_trends
 from prod_inv.models_ml.select_model import train_model
@@ -113,38 +113,14 @@ def train_models():
 @app.route('/make_prediction', methods=['GET'])
 def make_prediction():
     period = request.args.get('period') or 14400
-    training_period = request.args.get('historical') or 150
-
-    signals = []
     for c in all_tickers:
         dates = db.session.query(Ticker).filter(and_(Ticker.coin == c, Ticker.period == int(period))).order_by(Ticker.date.desc()).limit(1).all()
         d = dates[-1]
-        d_base = d.date - int(training_period) * 86400
         value = d.close
-        features_df = features_extractor(d.date, d_base, c, int(period))
-        # remove close when predicting
-        signal, precision, target, stop_loss, expected_value = predict_signal(features_df.drop(['close'], axis=1).iloc[-1], c, 0.7)
-        if signal == 1:
-            signals.append({
-                'coin': c,
-                'signal': signal,
-                'precision': precision,
-                'target_profit': target,
-                'date_reference': d.date,
-                'stop_loss': stop_loss,
-                'expected_value': expected_value,
-                'value': value
-            })
+        check_open_orders(c, value, d.date)
+        features_df = features_extractor(d.date, c, int(period))
+        predict_signal(features_df.iloc[-1], c, 0.5)
 
-    signals = sorted(signals, key=lambda x:x['expected_value'], reverse=True)
-    if signals:
-        top_signal = signals[0]
-        set_signal(top_signal['date_reference'], top_signal['coin'],
-                   top_signal['value'], top_signal['expected_value'],
-                   top_signal['stop_loss'], top_signal['target_profit'],
-                   'open')
-    else:
-        print('No signal sent!')
 
     return 'Success'
 

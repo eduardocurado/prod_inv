@@ -9,6 +9,8 @@ from prod_inv.models.ticker import Ticker
 from prod_inv.models.technical_indicator import TechnicalIndicator
 from prod_inv.models.book import Book
 from prod_inv.models.ml_model import MLModel
+from prod_inv.models.order_book import OrderBook
+from prod_inv.models.balance import Balance
 app.config.from_object(os.environ['APP_SETTINGS'])
 
 migrate = Migrate(app, db)

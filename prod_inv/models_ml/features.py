@@ -2,13 +2,13 @@ import math
 
 import numpy as np
 import pandas as pd
-
+from scipy.stats import stats
 from sqlalchemy import and_
 
 from prod_inv.app import db
 from prod_inv.models.technical_indicator import TechnicalIndicator
 from prod_inv.models.ticker import Ticker
-from prod_inv.models_ml.utils import query_to_dict, get_slope
+from prod_inv.models_ml.utils import query_to_dict
 
 
 def get_lagged_values(num_lags, df, indicators):
@@ -19,16 +19,82 @@ def get_lagged_values(num_lags, df, indicators):
 
     return df
 
-def features_extractor(date_reference, date_base, coin, period, long_period=86400):
+# win in # samples
+def calculate_slopes(df, win, result_df, slope_label):
+    closes = df[['date', 'close']]
+    seq = np.arange(0, win)
+    di = []
+    for i in range(win, len(closes)):
+        v_closes = closes.iloc[i-win:i]
+        base_date = v_closes.iloc[-1:][['date']].values[0][0]
+        slope, intercept, r_value, p_value, std_err = stats.linregress(seq, v_closes['close'].values)
+        di.append({
+            'base_date': base_date,
+            'slope': slope
+        })
+
+    for index, row in result_df.iterrows():
+        date = row['date']
+        slopes = [d for d in di if d['base_date'] <= date]
+        if slopes:
+            result_df.loc[result_df.index==index, slope_label] = sorted(slopes, key=lambda x: x['base_date'], reverse=True)[0]['slope']
+    return result_df
+
+
+def calculate_second_order_indicators(df):
+    df['BBand_height'] = df['BBUpper'] / df['BBLower']
+    df['BBand_lower_height'] = df['BBLower'] / df['close']
+    df['BBand_upper_height'] = df['BBUpper'] / df['close']
+
+    df['EMA_height12'] = df['EMA12'] / df['close']
+    df['EMA_height26'] = df['EMA26'] / df['close']
+
+    df['SMA_height12'] = df['SMA12'] / df['close']
+    df['SMA_height26'] = df['SMA26'] / df['close']
+
+    df['close_open'] = df['open'] / df['close']
+    df['close_low'] = df['low'] / df['close']
+    df['close_high'] = df['high'] / df['close']
+
+    df['log_trend'] = np.log(df['TREND_COIN'] / df['TREND_COIN'].shift(1))
+
+    df['log_return'] = np.log(df['close'] / df['close'].shift(1))
+    df['log_return_2'] = np.log(df.close / df.close.shift(2))
+    df['log_return_3'] = np.log(df.close / df.close.shift(3))
+    df['log_return_4'] = np.log(df.close / df.close.shift(4))
+
+    return df.copy()
+
+# window in days
+def calculate_statistical_indicators(window, period, df):
+    df['coin'].unique()
+    look_back_size = math.floor((3600 * 24 * window) / period)
+    for index, row in df.iterrows():
+        base_date = row['date']
+        window_df = df.loc[df['date'] <= base_date]
+        if window_df.empty or len(window_df) < look_back_size:
+            continue
+        log_returns = window_df[-look_back_size:]['log_return']
+        mean = log_returns.mean()
+        var = log_returns.var()
+        stdev = log_returns.std()
+        df.loc[df.index==index, 'mean_return'] = mean
+        df.loc[df.index==index, 'variance'] = var
+        df.loc[df.index==index, 'stdev'] = stdev
+
+    return df.copy()
+
+
+def features_extractor(date_reference, coin, period, long_period=86400):
     tickers = db.session.query(Ticker). \
-        filter(and_(Ticker.date >= date_base,
-                    Ticker.date <= date_reference,
+        filter(and_(
+                    Ticker.date >= date_reference - long_period * 40,
                     Ticker.coin == coin)). \
         order_by(Ticker.date.asc()).all()
 
     tas = db.session.query(TechnicalIndicator). \
-        filter(and_(TechnicalIndicator.date >= date_base,
-                    TechnicalIndicator.date <= date_reference,
+        filter(and_(
+                    TechnicalIndicator.date >= date_reference - long_period * 40,
                     TechnicalIndicator.coin == coin,
                     TechnicalIndicator.indicator != 'SMA100',
                     TechnicalIndicator.indicator != 'EMA100')). \
@@ -40,100 +106,25 @@ def features_extractor(date_reference, date_base, coin, period, long_period=8640
     df_tas = pd.DataFrame(query_to_dict(tas)).drop('id', axis=1)
     df_tas = pd.pivot_table(df_tas, index=['coin', 'date', 'period'], columns='indicator', values='value').copy()
     # Join Ticks and TAs
-    all_df = df_tickers.join(df_tas).reset_index()
+    all_df = df_tickers.join(df_tas).reset_index().sort_values(['date'], ascending=True).copy()
 
-    # Long Screen
-    big_df = all_df.loc[(all_df['period'] == long_period)].dropna()
-    # Small Screen
-    filter_df = all_df.loc[(all_df['period'] == period)].dropna()
+    big_df = all_df.loc[(all_df['coin'] == coin) & (all_df['period'] == long_period)]
 
-    # Calculate Slope Macro Screen
-    closes = big_df[['date', 'close']]
-    di = get_slope(30, closes)
+    filter_df = all_df.loc[(all_df['coin'] == coin) & (all_df['period'] == period)]
 
-    for index, row in filter_df.iterrows():
-        date = row['date']
-        slopes = [d for d in di if d['base_date'] <= date]
-        if slopes:
-            filter_df.ix[index, 'slope'] = sorted(slopes, key=lambda x: x['base_date'], reverse=True)[0]['slope']
+    filter_df = calculate_slopes(big_df, 30, filter_df, 'slope')
+    filter_df = calculate_slopes(filter_df, 30, filter_df, 'slope_short')
 
-    # Calculate Slope Short Screen
-    closes = filter_df[['date', 'close']]
-    di = get_slope(30, closes)
-    for index, row in filter_df.iterrows():
-        date = row['date']
-        slopes = [d for d in di if d['base_date'] <= date]
-        if slopes:
-            filter_df.ix[index, 'slope_short'] = sorted(slopes, key=lambda x: x['base_date'], reverse=True)[0]['slope']
+    full_df = calculate_second_order_indicators(filter_df)
+    full_df = calculate_statistical_indicators(2, period, full_df)
 
-
-    filter_df['BBand_height'] = filter_df['BBUpper']/filter_df['BBLower']
-    filter_df['BBand_lower_height'] = filter_df['BBLower']/filter_df['close']
-    filter_df['BBand_upper_height'] = filter_df['BBUpper']/filter_df['close']
-
-    #filter_df['EMA_height9'] = filter_df['EMA9']/filter_df['close']
-    filter_df['EMA_height12'] = filter_df['EMA12']/filter_df['close']
-    filter_df['EMA_height26'] = filter_df['EMA26']/filter_df['close']
-    #filter_df['EMA_height50'] = filter_df['EMA50']/filter_df['close']
-
-
-    #filter_df['SMA_height9'] = filter_df['SMA9']/filter_df['close']
-    filter_df['SMA_height12'] = filter_df['SMA12']/filter_df['close']
-    filter_df['SMA_height26'] = filter_df['SMA26']/filter_df['close']
-    #filter_df['SMA_height50'] = filter_df['SMA50']/filter_df['close']
-
-    filter_df['close_open'] = filter_df['open']/filter_df['close']
-    filter_df['close_low'] = filter_df['low']/filter_df['close']
-    filter_df['close_high'] = filter_df['high']/filter_df['close']
-
-
-    filter_df['log_trend'] = np.log(filter_df['TREND_COIN']/filter_df['TREND_COIN'].shift(1))
-
-    filter_df['log_return'] = np.log(filter_df['close']/filter_df['close'].shift(1))
-    filter_df['log_return_2'] = np.log(filter_df.close/filter_df.close.shift(2))
-    filter_df['log_return_3'] = np.log(filter_df.close/filter_df.close.shift(3))
-    filter_df['log_return_4'] = np.log(filter_df.close/filter_df.close.shift(4))
-    filter_df = filter_df.dropna().copy()
-
-
-    # Statistical Measures
-    filter_df['coin'].unique()
-    window = 2
-
-    look_back_size = math.floor((3600 * 24 * window) / period)
-    for index, row in filter_df.iterrows():
-        base_date = row['date']
-        window_df = filter_df.loc[filter_df['date'] <= base_date]
-        if window_df.empty or len(window_df) < look_back_size:
-            continue
-        log_returns = window_df[-look_back_size:]['log_return']
-        mean = log_returns.mean()
-        var = log_returns.var()
-        stdev = log_returns.std()
-        filter_df.ix[index, 'mean_return'] = mean
-        filter_df.ix[index, 'variance'] = var
-        filter_df.ix[index, 'stdev'] = stdev
-
-
-
-    drop_columns = ['coin', 'date', 'period',
-                    'high', 'low', 'open', 'volume', 'quote_volume',
-                    'weightedAverage',
-                    'BBUpper', 'BBLower', 'BBMiddle',
-                    'EMA9', 'EMA12', 'EMA26', 'EMA50',
-                    'SMA9', 'SMA12', 'SMA26', 'SMA50',
-                    'mean_return', 'variance', 'stdev',
-                    ]
-
-    indicators = [
-        'ADX', 'ATR',
-        'HISTOGRAM', 'MACD', 'MOMENTUM', 'RSI14', 'SIGNAL',
-        'BBand_lower_height', 'BBand_upper_height',
-        'slope_short',
-        'EMA_height12', 'EMA_height26', 'SMA_height12', 'SMA_height26',
-        'log_trend'
-    ]
-
-    clean_df = get_lagged_values(1, filter_df, indicators).drop(drop_columns, axis=1).dropna()
+    features_df = full_df.dropna().copy()
+    features_df['target_log_return_1'] = np.log(features_df.close.shift(-1) / features_df.close)
+    features_df['target_log_return_2'] = np.log(features_df.close.shift(-2) / features_df.close)
+    features_df['target_log_return_3'] = np.log(features_df.close.shift(-3) / features_df.close)
+    features_df['target_log_return_4'] = np.log(features_df.close.shift(-4) / features_df.close)
+    features_df['target_log_return_5'] = np.log(features_df.close.shift(-5) / features_df.close)
+    features_df['target_log_return_6'] = np.log(features_df.close.shift(-6) / features_df.close)
+    clean_df = features_df.dropna()
 
     return clean_df
