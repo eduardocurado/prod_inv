@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6c97972f-daea-4702-83fd-d106ff0a5cc5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_ETH_model.sav" afterPath="$PROJECT_DIR$/USDT_ETH_model.sav" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_XRP_model.sav" afterPath="$PROJECT_DIR$/USDT_XRP_model.sav" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/back_test.py" afterPath="$PROJECT_DIR$/back_test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/set_up_initial_data.sh" afterPath="$PROJECT_DIR$/bin/set_up_initial_data.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/notebooks/.ipynb_checkpoints/Back Test Models-checkpoint.ipynb" afterPath="$PROJECT_DIR$/notebooks/.ipynb_checkpoints/Back Test Models-checkpoint.ipynb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/notebooks/Back Test Models.ipynb" afterPath="$PROJECT_DIR$/notebooks/Back Test Models.ipynb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/notebooks/KPIs.ipynb" afterPath="$PROJECT_DIR$/notebooks/KPIs.ipynb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prod_inv/app.py" afterPath="$PROJECT_DIR$/prod_inv/app.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prod_inv/collectors/google_trends.py" afterPath="$PROJECT_DIR$/prod_inv/collectors/google_trends.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prod_inv/models_ml/features.py" afterPath="$PROJECT_DIR$/prod_inv/models_ml/features.py" />
-    </list>
+    <list default="true" id="6c97972f-daea-4702-83fd-d106ff0a5cc5" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
