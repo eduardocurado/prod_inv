@@ -58,6 +58,12 @@ def calculate_second_order_indicators(df):
 
     df['log_trend'] = np.log(df['TREND_COIN'] / df['TREND_COIN'].shift(1))
 
+    df['rate_slope'] = df.slope / df.slope_short
+
+    df['high_low'] = df.high / df.low
+
+    df['ema_height'] = df.EMA12 / df.SMA12
+
     df['log_return'] = np.log(df['close'] / df['close'].shift(1))
     df['log_return_2'] = np.log(df.close / df.close.shift(2))
     df['log_return_3'] = np.log(df.close / df.close.shift(3))

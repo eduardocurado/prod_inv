@@ -18,7 +18,7 @@ def get_trends(base_date, end_date):
     i = 0
 
     while i <= len(all_tickers) + 1:
-        trends = pytrends.get_historical_interest(kw_list[i:i + 3], year_start=int(date_window[:4]),
+        trends = pytrends.get_historical_interest(kw_list[i:i + 4], year_start=int(date_window[:4]),
                                                   month_start=int(date_window[5:7]),
                                                   day_start=int(date_window[8:10]),
                                                   hour_start=int(date_window[11:13]),
@@ -30,6 +30,7 @@ def get_trends(base_date, end_date):
 
         if trends.empty:
             return 'Failed'
+
 
         trends = trends.drop(['isPartial'], axis=1).reset_index().drop_duplicates(subset=['date'],
                                                                                   keep="last").copy()
@@ -48,6 +49,6 @@ def get_trends(base_date, end_date):
                     db.session.rollback()
                     print('Already has value ' + col + ' ' + str(row['date']))
 
-        i += 3
+        i += 4
 
     return 'Success'

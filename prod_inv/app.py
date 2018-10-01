@@ -39,6 +39,8 @@ def get_historical_trends():
     historical = int(request.args.get('historical')) or 30
     end_date = datetime.now()  # up until today
     start_date = (end_date - timedelta(days=historical))
+    # start_date = start_date.replace(year=2018, day=10, month=9)
+    # end_date.replace(year=2018, day=28, month=9)
     response_go = get_trends(start_date.timestamp(), end_date.timestamp())
     if response_go == 'Success':
         return 'Insertion successfull'

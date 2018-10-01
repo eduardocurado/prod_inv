@@ -38,7 +38,7 @@ def calculate_slopes(df, win, result_df, slope_label):
         slopes = [d for d in di if d['base_date'] <= date]
         if slopes:
             result_df.loc[result_df.index==index, slope_label] = sorted(slopes, key=lambda x: x['base_date'], reverse=True)[0]['slope']
-    return result_df
+    return result_df.copy()
 
 
 def calculate_second_order_indicators(df):
@@ -57,6 +57,14 @@ def calculate_second_order_indicators(df):
     df['close_high'] = df['high'] / df['close']
 
     df['log_trend'] = np.log(df['TREND_COIN'] / df['TREND_COIN'].shift(1))
+
+    df['rate_slope'] = df.slope / df.slope_short
+
+    df['high_low'] = df.high / df.low
+
+    df['ema_height'] = df.EMA12 / df.SMA12
+
+
 
     df['log_return'] = np.log(df['close'] / df['close'].shift(1))
     df['log_return_2'] = np.log(df.close / df.close.shift(2))
@@ -103,13 +111,13 @@ def get_lag_indicators(df):
 
 
 def set_up_initial_data(coin):
-    all_df = get_full_df()
+    all_df = get_full_df().copy()
 
     period = 86400
-    big_df = all_df.loc[(all_df['coin'] == coin) & (all_df['period'] == period)]
+    big_df = all_df.loc[(all_df['coin'] == coin) & (all_df['period'] == period)].copy()
 
     period = 14400
-    filter_df = all_df.loc[(all_df['coin'] == coin) & (all_df['period'] == period)]
+    filter_df = all_df.loc[(all_df['coin'] == coin) & (all_df['period'] == period)].copy()
     filter_df = calculate_slopes(big_df, 30, filter_df, 'slope')
     filter_df = calculate_slopes(filter_df, 30, filter_df, 'slope_short')
     full_df = calculate_second_order_indicators(filter_df)
