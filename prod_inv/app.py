@@ -54,7 +54,7 @@ def get_historical_indicators():
     end_date = datetime.now()  # up until today
     start_date = (end_date - timedelta(days=historical))
 
-    for c in all_tickers:
+    for c in ['USDT_STR']:
         dates = db.session.query(Ticker).filter(and_(Ticker.coin == c, Ticker.period == period, Ticker.date >= start_date.timestamp())).order_by(Ticker.date.asc()).all()
         for d in dates:
             calculate_indicators(d, period, c)

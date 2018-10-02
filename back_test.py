@@ -129,8 +129,10 @@ def set_up_initial_data(coin):
 coins = ['USDT_BTC', 'USDT_ETH', 'USDT_LTC', 'USDT_XRP', 'USDT_ETC', 'USDT_DASH',
                 'USDT_XMR',  'USDT_STR', 'USDT_EOS',]
 
-for coin in coins:
+for coin in ['USDT_STR']:
     df = set_up_initial_data(coin)
+    print(len(df))
+    import ipdb;ipdb.set_trace()
     features_df = df.dropna().copy()
     features_df['target_log_return_1'] = np.log(features_df.close.shift(-1)/features_df.close)
     features_df['target_log_return_2'] = np.log(features_df.close.shift(-2)/features_df.close)
@@ -138,6 +140,6 @@ for coin in coins:
     features_df['target_log_return_4'] = np.log(features_df.close.shift(-4)/features_df.close)
     features_df['target_log_return_5'] = np.log(features_df.close.shift(-5)/features_df.close)
     features_df['target_log_return_6'] = np.log(features_df.close.shift(-6)/features_df.close)
-
+    print(len(features_df))
     filename = coin + 'back_test_sample.sav'
     pickle.dump(features_df.dropna(), open(filename, 'wb'))

@@ -69,6 +69,8 @@ def calculate_second_order_indicators(df):
     df['log_return_3'] = np.log(df.close / df.close.shift(3))
     df['log_return_4'] = np.log(df.close / df.close.shift(4))
 
+
+
     return df.copy()
 
 # window in days
