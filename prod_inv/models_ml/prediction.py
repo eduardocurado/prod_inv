@@ -61,11 +61,21 @@ def predict_signal(df, coin, threshold=0.8):
     signal = 0
     usdt_balance = check_credit()
     status = 'denied' if usdt_balance <= 0 else 'open'
-    X = df.drop(drop_columns)
+
 
     try:
         filename = '/Users/macbookpro/Documents/prod_inv/' + coin + '_model.sav'
         model = pickle.load(open(filename, 'rb'))
+        mask = (
+            ((df['log_return'] >= model['take_profit'])
+             | (df['log_return_2'] >= model['take_profit'])
+             | (df['log_return_3'] >= model['take_profit'])
+             | (df['log_return_4'] >= model['take_profit'])
+             ))
+        df.loc[mask, 'last_target'] = 1
+        df.loc[~mask, 'last_target'] = 0
+        X = df.drop(drop_columns).dropna()
+
     except Exception as e:
         print('No model found for ' + coin)
         return False
