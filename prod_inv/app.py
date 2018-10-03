@@ -8,7 +8,6 @@ from sqlalchemy import and_
 
 from prod_inv.fixtures import all_tickers
 
-
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
@@ -19,7 +18,6 @@ from prod_inv.technical_indicators.calculate_indicators import calculate_indicat
 from prod_inv.models.ticker import Ticker
 from prod_inv.models_ml.features import features_extractor
 from prod_inv.models_ml.prediction import predict_signal, check_open_orders
-from prod_inv.book_valuation.book_runner import set_signal
 from prod_inv.collectors.google_trends import get_trends
 from prod_inv.models_ml.select_model import train_model
 
