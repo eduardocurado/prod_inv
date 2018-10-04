@@ -82,7 +82,7 @@ def predict_signal(df, coin, threshold=0.8):
 
     X = model['Scaler'].transform(X.ravel().reshape(1, -1))
     predicted_proba = model['Model'].predict_proba(X)
-
+    print('Predicted prob: ' + str(predicted_proba))
     if predicted_proba[0][1] >= threshold:
         signal = 1
 
