@@ -54,15 +54,11 @@ def check_open_orders(coin, close, date):
                 return False
 
 
-
-
-
 def predict_signal(df, coin, threshold=0.8):
     signal = 0
     usdt_balance = check_credit()
     status = 'denied' if usdt_balance <= 0 else 'open'
-
-
+    import ipdb;ipdb.set_trace()
     try:
         filename = '/Users/macbookpro/Documents/prod_inv/' + coin + '_model.sav'
         model = pickle.load(open(filename, 'rb'))

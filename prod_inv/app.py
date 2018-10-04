@@ -121,7 +121,6 @@ def make_prediction():
         features_df = features_extractor(d.date, c, int(period))
         predict_signal(features_df.iloc[-1], c, 0.5)
 
-
     return 'Success'
 
 
