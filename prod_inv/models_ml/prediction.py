@@ -58,7 +58,6 @@ def predict_signal(df, coin, threshold=0.8):
     signal = 0
     usdt_balance = check_credit()
     status = 'denied' if usdt_balance <= 0 else 'open'
-    import ipdb;ipdb.set_trace()
     try:
         filename = '/Users/macbookpro/Documents/prod_inv/' + coin + '_model.sav'
         model = pickle.load(open(filename, 'rb'))
@@ -70,7 +69,8 @@ def predict_signal(df, coin, threshold=0.8):
              ))
         df.loc[mask, 'last_target'] = 1
         df.loc[~mask, 'last_target'] = 0
-        X = df.drop(drop_columns).dropna()
+
+        X = df.drop(drop_columns, axis=1).dropna().iloc[-1]
 
     except Exception as e:
         print('No model found for ' + coin)
@@ -83,11 +83,11 @@ def predict_signal(df, coin, threshold=0.8):
         signal = 1
 
     if signal:
-        quote = df.close
+        quote = df.close.iloc[-1]
         volume = (max((usdt_balance/4), 25) / quote)
         take_profit = model['take_profit']
         stop_loss = model['stop_loss']
-        date = df.date
+        date = df.date.iloc[-1]
         try:
             order_book = OrderBook(coin, int(date), float(quote), float(volume), float(stop_loss), float(take_profit)
                                    , status, None, None, None)

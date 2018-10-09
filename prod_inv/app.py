@@ -52,7 +52,7 @@ def get_historical_indicators():
     end_date = datetime.now()  # up until today
     start_date = (end_date - timedelta(days=historical))
 
-    for c in ['USDT_STR']:
+    for c in all_tickers:
         dates = db.session.query(Ticker).filter(and_(Ticker.coin == c, Ticker.period == period, Ticker.date >= start_date.timestamp())).order_by(Ticker.date.asc()).all()
         for d in dates:
             calculate_indicators(d, period, c)
@@ -90,26 +90,6 @@ def get_technical_indicators():
     return 'Success'
 
 
-@app.route('/train_models', methods=['GET'])
-def train_models():
-    period = request.args.get('period') or 14400
-    training_period = request.args.get('historical') or None
-
-    for c in all_tickers:
-        dates = db.session.query(Ticker).filter(and_(Ticker.coin == c, Ticker.period == int(period))).order_by(Ticker.date.asc()).all()
-        d = dates[-1]
-        d_base = dates[0].date
-
-        if training_period:
-            d_base = d.date - int(training_period) * 86400
-
-        features_df = features_extractor(d.date, d_base, c, int(period))
-        # remove close when predicting
-        train_model(features_df, c, d.date)
-
-    return 'Success'
-
-
 @app.route('/make_prediction', methods=['GET'])
 def make_prediction():
     period = request.args.get('period') or 14400
@@ -119,7 +99,7 @@ def make_prediction():
         value = d.close
         check_open_orders(c, value, d.date)
         features_df = features_extractor(d.date, c, int(period))
-        predict_signal(features_df.iloc[-1], c, 0.5)
+        predict_signal(features_df, c, 0.5)
 
     return 'Success'
 

@@ -133,6 +133,6 @@ def features_extractor(date_reference, coin, period, long_period=86400):
     features_df['target_log_return_4'] = np.log(features_df.close.shift(-4) / features_df.close)
     features_df['target_log_return_5'] = np.log(features_df.close.shift(-5) / features_df.close)
     features_df['target_log_return_6'] = np.log(features_df.close.shift(-6) / features_df.close)
-    clean_df = features_df.dropna()
+    clean_df = features_df.copy()
 
     return clean_df

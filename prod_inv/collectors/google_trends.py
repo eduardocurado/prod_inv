@@ -1,6 +1,7 @@
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 
+import pandas as pd
 from pytrends.request import TrendReq
 
 from prod_inv.app import db
@@ -48,7 +49,12 @@ def get_trends(base_date, end_date):
                 except Exception:
                     db.session.rollback()
                     print('Already has value ' + col + ' ' + str(row['date']))
+        if trends.date.iloc[-1].strftime('%Y-%m-%dT%H:%M:%s') < date_end[:13]:
+            limit_date =(datetime.strptime(date_end[:19], '%Y-%m-%dT%H:%M:%S') - timedelta(days=7)).strftime('%Y-%m-%dT%H:%M:%S')
+            date_window = min(trends.date.iloc[-1].strftime('%Y-%m-%d %H:%M:%S'), limit_date)
+            continue
 
+        date_window = datetime.fromtimestamp(base_date).isoformat()
         i += 4
 
     return 'Success'
