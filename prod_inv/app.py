@@ -35,7 +35,7 @@ def get_historical_ticker():
 @app.route('/get_historical_google_trends', methods=['GET'])
 def get_historical_trends():
     historical = int(request.args.get('historical')) or 30
-    end_date = datetime.now()  # up until today
+    end_date = datetime.now() + timedelta(hours=3) # up until today
     start_date = (end_date - timedelta(days=historical))
     # start_date = start_date.replace(year=2018, day=10, month=9)
     # end_date.replace(year=2018, day=28, month=9)
@@ -49,7 +49,7 @@ def get_historical_trends():
 def get_historical_indicators():
     period = int(request.args.get('period')) or 14400
     historical = int(request.args.get('historical')) or 30
-    end_date = datetime.now()  # up until today
+    end_date = datetime.now() + timedelta(hours=3) # up until today
     start_date = (end_date - timedelta(days=historical))
 
     for c in all_tickers:
@@ -62,7 +62,7 @@ def get_historical_indicators():
 @app.route('/get_google_trend', methods=['GET'])
 def get_google_trend():
     period = int(request.args.get('period')) or 14400
-    end_date = datetime.now()  # up until today
+    end_date = datetime.now() + timedelta(hours=3) # up until today
     start_date = (end_date - timedelta(seconds=period))
     response_go = get_trends(start_date.timestamp(), end_date.timestamp())
     if response_go == 'Success':

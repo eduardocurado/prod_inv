@@ -50,7 +50,7 @@ def get_current_ticker_prices(period, tickers):
 # Historical in Days
 def get_historical_ticker_prices(period, tickers, historical):
     polo_url = base_polo_url + 'returnChartData&currencyPair={}&start={}&end={}&period={}'
-    end_date = datetime.now()  # up until today
+    end_date = datetime.now() + timedelta(hours=3) # up until today
     start_date = (end_date - timedelta(days=historical))
     if not tickers:
         tickers = all_tickers

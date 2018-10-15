@@ -13,12 +13,12 @@ def calculate_ma(length, period, date_reference, coins=None, _type='SMA'):
         coins = all_tickers
     for c in coins:
         closes = db.session.query(Ticker).\
-            filter(and_(Ticker.date <= date_reference, Ticker.coin==c, Ticker.period==period)).\
+            filter(and_(Ticker.date <= date_reference, Ticker.coin == c, Ticker.period == period)).\
             order_by(Ticker.date.desc()).limit(length).all()
 
         close = [v.close for v in closes][::-1]
         df = pd.DataFrame(close, columns=['close'])
-        if _type== 'SMA':
+        if _type == 'SMA':
             ma = tb.MA(df.close, timeperiod=length)
 
         elif _type == 'EMA':

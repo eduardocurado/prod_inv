@@ -13,7 +13,7 @@ def calculate_boillinger_bands(length, period, date_reference, coins=None):
         coins = all_tickers
     for c in coins:
         closes = db.session.query(Ticker).\
-            filter(and_(Ticker.date <= date_reference, Ticker.coin==c, Ticker.period==period)).\
+            filter(and_(Ticker.date <= date_reference, Ticker.coin == c, Ticker.period==period)).\
             order_by(Ticker.date.desc()).limit(length).all()
 
         close = [v.close for v in closes][::-1]

@@ -3,6 +3,7 @@ import math
 import numpy as np
 import pandas as pd
 import pickle
+import talib as tb
 from scipy import stats
 from sqlalchemy import create_engine
 
@@ -64,6 +65,10 @@ def calculate_second_order_indicators(df):
     df['close_high'] = df['high'] / df['close']
 
     df['log_trend'] = np.log(df['TREND_COIN'] / df['TREND_COIN'].shift(1))
+    df = df.dropna().copy()
+    df['SMA12_trend'] = tb.MA(df.log_trend, timeperiod=12)
+    df = df.dropna().copy()
+    df['SMA_trend_height12'] = df['SMA12_trend'] - df['log_trend']
 
     df['rate_slope'] = df.slope / df.slope_short
 
@@ -133,7 +138,7 @@ def set_up_initial_data(coin):
 
 
 coins = ['USDT_BTC', 'USDT_ETH', 'USDT_LTC', 'USDT_XRP', 'USDT_ETC', 'USDT_DASH',
-         'USDT_XMR', 'USDT_STR', 'USDT_EOS', ]
+         'USDT_XMR', 'USDT_STR',]
 
 for coin in coins:
     df = set_up_initial_data(coin)
