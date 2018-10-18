@@ -2,28 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6c97972f-daea-4702-83fd-d106ff0a5cc5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_BTC_model.sav" afterPath="$PROJECT_DIR$/USDT_BTC_model.sav" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_BTCback_test_sample.sav" afterPath="$PROJECT_DIR$/USDT_BTCback_test_sample.sav" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_DASHback_test_sample.sav" afterPath="$PROJECT_DIR$/USDT_DASHback_test_sample.sav" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_ETCback_test_sample.sav" afterPath="$PROJECT_DIR$/USDT_ETCback_test_sample.sav" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_ETH_model.sav" afterPath="$PROJECT_DIR$/USDT_ETH_model.sav" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_ETHback_test_sample.sav" afterPath="$PROJECT_DIR$/USDT_ETHback_test_sample.sav" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_LTC_model.sav" afterPath="$PROJECT_DIR$/USDT_LTC_model.sav" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_LTCback_test_sample.sav" afterPath="$PROJECT_DIR$/USDT_LTCback_test_sample.sav" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_STRback_test_sample.sav" afterPath="$PROJECT_DIR$/USDT_STRback_test_sample.sav" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_XMRback_test_sample.sav" afterPath="$PROJECT_DIR$/USDT_XMRback_test_sample.sav" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USDT_XRPback_test_sample.sav" afterPath="$PROJECT_DIR$/USDT_XRPback_test_sample.sav" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/back_test.py" afterPath="$PROJECT_DIR$/back_test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/set_up_initial_data.sh" afterPath="$PROJECT_DIR$/bin/set_up_initial_data.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/notebooks/.ipynb_checkpoints/Back Test Models-checkpoint.ipynb" afterPath="$PROJECT_DIR$/notebooks/.ipynb_checkpoints/Back Test Models-checkpoint.ipynb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/notebooks/Back Test Models.ipynb" afterPath="$PROJECT_DIR$/notebooks/Back Test Models.ipynb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prod_inv/app.py" afterPath="$PROJECT_DIR$/prod_inv/app.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prod_inv/collectors/poloniex.py" afterPath="$PROJECT_DIR$/prod_inv/collectors/poloniex.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prod_inv/fixtures.py" afterPath="$PROJECT_DIR$/prod_inv/fixtures.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prod_inv/technical_indicators/boillinger.py" afterPath="$PROJECT_DIR$/prod_inv/technical_indicators/boillinger.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prod_inv/technical_indicators/ma.py" afterPath="$PROJECT_DIR$/prod_inv/technical_indicators/ma.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,8 +17,8 @@
       <file leaf-file-name="back_test.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/back_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="862">
-              <caret line="110" column="57" lean-forward="false" selection-start-line="110" selection-start-column="51" selection-end-line="110" selection-end-column="57" />
+            <state relative-caret-position="138">
+              <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -92,8 +72,8 @@
     <replaceStrings>
       <replace />
       <replace>from prod_inv.models</replace>
-      <replace>df</replace>
       <replace>from prod_inv.technical</replace>
+      <replace>df</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -241,8 +221,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -691,8 +672,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/back_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="862">
-          <caret line="110" column="57" lean-forward="false" selection-start-line="110" selection-start-column="51" selection-end-line="110" selection-end-column="57" />
+        <state relative-caret-position="138">
+          <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
